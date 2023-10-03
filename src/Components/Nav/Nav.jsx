@@ -5,9 +5,17 @@ import { useContext } from "react";
 
 const Nav = () =>{
 
-    const activeStyle = { textDecoration: "underline" };
 
     const context = useContext(ContextShoppingCart);
+    
+    const isCartOpen = () =>{
+        if(context.isCheckOutMenuOpen === false){
+            context.openCheckOutMenu()
+        }else{
+            console.log('cart abierta');
+            context.closeCheckOutMenu()
+        }
+    }
 
     return(
         <nav className="bg-red-100 flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
@@ -23,7 +31,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         All
                     </NavLink>
@@ -31,7 +38,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/clothes"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Clothes
                     </NavLink>
@@ -39,7 +45,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/electronics"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Electronics
                     </NavLink>
@@ -47,7 +52,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/furniture"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Furniture
                     </NavLink>
@@ -55,7 +59,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/toys"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Toys
                     </NavLink>
@@ -63,7 +66,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/others"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Others
                     </NavLink>
@@ -77,7 +79,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/orders"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         MyOrders
                     </NavLink>
@@ -85,7 +86,6 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/account"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         My Account
                     </NavLink>
@@ -93,12 +93,11 @@ const Nav = () =>{
                 <li>
                     <NavLink
                         to="/login"
-                        style={({ isActive }) => isActive ? activeStyle : undefined }
                     >
                         Sign Out
                     </NavLink>
                 </li>
-                <li className="flex flex-row items-center">
+                <li className="flex flex-row items-center" onClick={() => isCartOpen() }>
                     <NavLink to="/">
                         <ShoppingCartIcon className="h-6 w-6 text-red-300" />
                         <div>

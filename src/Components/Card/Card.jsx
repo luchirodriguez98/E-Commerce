@@ -7,13 +7,17 @@ function Card({item}) {
     const context = useContext(ContextShoppingCart);
 
     const saveInfo = (item)=>{
-        context.openPD() 
+        context.closeCheckOutMenu() 
+        context.openProductDetail() 
         context.setProductInfo(item)
+
     }
-    const addProduct = (productInfo) =>{
+    const addProduct = (event, item) =>{
+        event.stopPropagation();
         context.setCount(context.count + 1)
-        context.setCartProducts([...context.cartProducts, context.productInfo])
-        console.log(count);
+        context.setCartProducts([...context.cartProducts, item])
+        context.openCheckOutMenu() 
+        context.closeProductDetail() 
     }
 
 
@@ -21,9 +25,8 @@ function Card({item}) {
     return (
             <div className="cursor-pointer w-56 h-60 rounded-lg" onClick={() => saveInfo(item)}>
                 <figure className="relative w-full h-4/5 rounded-lg">
-                    <span className="absolute bottom-2 left-2 p-1 bg-white rounded-lg text-xs">{item.category?.name}</span>
-                    <img className="w-full h-full object-cover rounded-lg" src={item.images[1]} alt={item.description}/>
-                    <button onClick={addProduct(item)} className="absolute flex justify-center items-center top-2 right-2 w-6 h-6 p-1 bg-white  rounded-full">
+                    <img className="w-full h-full object-cover rounded-lg" src={item.image} alt={item.description}/>
+                    <button onClick={(event) => addProduct(event, item)} className="absolute flex justify-center items-center top-2 right-2 w-6 h-6 p-1 bg-white  rounded-full">
                         <PlusIcon className="h-6 w-6 text-red-500"/>
                     </button>
                 </figure>

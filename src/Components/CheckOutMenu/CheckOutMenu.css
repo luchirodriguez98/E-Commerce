@@ -1,5 +1,6 @@
-.product-detail{
+.checkout-menu{
     width: 360px;
     height: 450px;
     right: 10px;
+    z-index: 1;
 }

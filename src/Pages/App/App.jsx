@@ -8,6 +8,7 @@ import { MyOrder } from '../MyOrder/MyOrder';
 import { MyOrders } from '../MyOrders/MyOrders';
 import { NotFound } from '../NotFound/NotFound';
 import { SignIn } from '../SignIn/SignIn';
+import { CheckOutMenu } from '../../Components/CheckOutMenu/CheckOutMenu';
 
 import './App.css';
 
@@ -48,6 +49,7 @@ function App() {
       <ShoppingCartProvider>
        <BrowserRouter>
           <Nav></Nav>
+          <CheckOutMenu />
           <AppRoutes />
         </BrowserRouter>
       </ShoppingCartProvider>
