@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Layout } from "../../Components/Layout/Layout"
 import { ContextShoppingCart } from '../../Context/Context';
-import { CheckOutMenuCards } from '../../Components/CheckOutMenuCards/CheckOutMenuCards';
+import { OrderCard } from '../../Components/OrderCard/OrderCard';
+
 
 
 function MyOrder() {
@@ -12,10 +13,10 @@ function MyOrder() {
     return (
       <Layout>
         My Order
-        <div className="flex flex-col justify-between items-center w-80">
+        <div className="flex flex-col items-center justify-between w-80">
           {
             context.order[context.order.length -1].product.map(item =>(
-                <CheckOutMenuCards item = {item} key={item.id}/>
+                <OrderCard item = {item} key={item.id}/>
                 ))
             } 
         </div>

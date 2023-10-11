@@ -1,8 +1,7 @@
 import { useContext } from "react"
 import { ContextShoppingCart } from "../../Context/Context"
-import { XMarkIcon } from '@heroicons/react/24/solid'
 
-const CheckOutMenuCards = ({item}) =>{
+const OrderCard = ({item}) =>{
 
     const context = useContext(ContextShoppingCart);
 
@@ -22,12 +21,9 @@ const CheckOutMenuCards = ({item}) =>{
             </div>
             <div className="flex items-center gap-2">
                 <p className="font-medium text-m">${item.price}</p>
-                <button>
-                    <XMarkIcon className="w-5 h-5 text-red-500 cursor-pointer" onClick={() => deleteProduct()}/>
-                </button>
             </div>
         </div>
     )
 }
 
-export {CheckOutMenuCards}
+export {OrderCard}

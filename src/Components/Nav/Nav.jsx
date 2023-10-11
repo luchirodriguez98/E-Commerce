@@ -18,7 +18,7 @@ const Nav = () =>{
     }
 
     return(
-        <nav className="bg-red-100 flex justify-between items-center fixed z-10 top-0 w-full py-5 px-5 text-sm font-light">
+        <nav className="fixed top-0 z-10 flex items-center justify-between w-full px-5 py-5 text-sm font-light bg-red-100">
             {/* parte derecha */}
             <ul className="flex items-center gap-x-2">
                 <li className="text-xl font-bold text-yellow-400">
@@ -72,7 +72,7 @@ const Nav = () =>{
                 </li>
             </ul>
             {/* parte izquierda */}
-            <ul className="flex justify-between items-center gap-x-2">
+            <ul className="flex items-center justify-between gap-x-2">
                 <li className="text-gray-300">
                     luchirodriguez98@gmail.com
                 </li>
@@ -99,7 +99,7 @@ const Nav = () =>{
                 </li>
                 <li className="flex flex-row items-center" onClick={() => isCartOpen() }>
                     <NavLink to="/">
-                        <ShoppingCartIcon className="h-6 w-6 text-red-300" />
+                        <ShoppingCartIcon className="w-6 h-6 text-red-300" />
                         <div>
                         {context.count}
                         </div>
