@@ -3,6 +3,9 @@ import { useRoutes, BrowserRouter } from 'react-router-dom'
 import { ShoppingCartProvider } from '../../Context/Context';
 import { Nav } from '../../Components/Nav/Nav'
 import { Home } from '../Home/Home';
+import { Clothes } from '../Clothes/Clothes';
+import { Electronics } from '../Electronics/Electronics';
+import { Jewelery } from '../Jewelery/Jewelery';
 import { MyAccount } from '../MyAccount/MyAccount';
 import { MyOrder } from '../MyOrder/MyOrder';
 import { MyOrders } from '../MyOrders/MyOrders';
@@ -19,6 +22,18 @@ const AppRoutes = () =>{
       element: <Home />
     },
     {
+      path: '/clothes',
+      element: <Clothes />
+    },
+    {
+      path: '/electronics',
+      element: <Electronics />
+    },
+    {
+      path: '/jewelery',
+      element: <Jewelery />
+    },
+    {
       path: '/account',
       element: <MyAccount />
     },
@@ -32,6 +47,10 @@ const AppRoutes = () =>{
     },
     {
       path: '/orders/last',
+      element: <MyOrder />
+    },
+    {
+      path: '/orders/:id',
       element: <MyOrder />
     },
     {

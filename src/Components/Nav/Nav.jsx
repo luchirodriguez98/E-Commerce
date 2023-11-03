@@ -51,23 +51,9 @@ const Nav = () =>{
                 </li>
                 <li>
                     <NavLink
-                        to="/furniture"
+                        to="/jewelery"
                     >
-                        Furniture
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/toys"
-                    >
-                        Toys
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/others"
-                    >
-                        Others
+                        Jewelery
                     </NavLink>
                 </li>
             </ul>
@@ -98,12 +84,10 @@ const Nav = () =>{
                     </NavLink>
                 </li>
                 <li className="flex flex-row items-center" onClick={() => isCartOpen() }>
-                    <NavLink to="/">
                         <ShoppingCartIcon className="w-6 h-6 text-red-300" />
-                        <div>
-                        {context.count}
-                        </div>
-                    </NavLink>
+                        {/* <div>
+                        {context.cartProducts.lenght}
+                        </div> */}
                 </li>
                 
             </ul>

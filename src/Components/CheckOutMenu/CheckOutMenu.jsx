@@ -16,6 +16,7 @@ const CheckOutMenu = () =>{
             totalProducts: context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts),
         };
+        context.closeCheckOutMenu()
         context.setOrder([...context.order, savedOrder])
         context.setCartProducts([])
     }

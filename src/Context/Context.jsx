@@ -8,7 +8,7 @@ const ShoppingCartProvider = ({children}) => {
     
 
     useEffect(()=>{
-        fetch('https://fakestoreapi.com/products?limit=30')
+        fetch('https://fakestoreapi.com/products')
         .then(response => response.json())
         .then(data => setItems(data))
         .catch(error => error)
@@ -20,6 +20,7 @@ const ShoppingCartProvider = ({children}) => {
     const [isCheckOutMenuOpen, setisCheckOutMenuOpen] = useState(false);
     const [productInfo, setProductInfo] = useState({});
     const [order, setOrder] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
     const openProductDetail = () => setisProductDetailOpen(true);
     const closeProductDetail = () => setisProductDetailOpen(false);
@@ -38,6 +39,7 @@ const ShoppingCartProvider = ({children}) => {
             productInfo, 
             cartProducts,
             order,
+            searchValue,
             setItems,
             openProductDetail, 
             closeProductDetail, 
@@ -46,7 +48,8 @@ const ShoppingCartProvider = ({children}) => {
             setCount, 
             setProductInfo,
             setCartProducts,
-            setOrder}}>
+            setOrder,
+            setSearchValue}}>
         {children}
     </ContextShoppingCart.Provider>
 )}

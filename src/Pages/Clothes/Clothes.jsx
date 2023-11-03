@@ -1,22 +1,20 @@
-import { useContext } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import { Card } from "../../Components/Card/Card"
 import { Layout } from "../../Components/Layout/Layout"
 import { ProductDetail } from "../../Components/ProductDetail/ProductDetail";
 import { ContextShoppingCart } from "../../Context/Context";
-import './Home.css'
 
 
 
-function Home() {
+function Clothes() {
   
   const context = useContext(ContextShoppingCart);
-  const filteredItems = context.items.filter((item)=> item.title.toLowerCase().includes(context.searchValue.toLowerCase()));
+  const filteredItems = context.items.filter((item)=> item.category.includes("men's clothing" || "women's clothing"));
   
   return (
     <Layout>
        <div className="relative flex items-center justify-center mt-4 w-80">
-          <input onChange={(e)=>context.setSearchValue(e.target.value)} value={context.searchValue}placeholder="Search" className="text-center border border-black rounded"></input>
+          <h1>Clothes</h1>
         </div>
       <div className="grid w-full max-w-screen-lg grid-cols-4 gap-2 mt-10">
         {
@@ -32,4 +30,4 @@ function Home() {
   )
 }
 
-export {Home}
+export {Clothes}
