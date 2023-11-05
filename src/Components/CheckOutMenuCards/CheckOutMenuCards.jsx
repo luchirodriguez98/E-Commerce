@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { ContextShoppingCart } from "../../Context/Context"
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 const CheckOutMenuCards = ({item}) =>{
 
@@ -13,19 +13,19 @@ const CheckOutMenuCards = ({item}) =>{
     }
     
     return(
-        <div className="flex items-center justify-between w-full m-2">
+        <div className="flex items-center justify-between w-full my-2 border-b-2 border-gray-100 h-28">
             <div className="flex flex-row items-center gap-2">
-                <figure className="w-16 h-16">
-                    <img className="object-cover w-full h-full rounded-lg"src={item.image} alt="" />
+                <figure className="w-14 h-14">
+                    <img className="object-cover mr-1 rounded-lg"src={item.image} alt="" />
                 </figure>
+            </div>
+            <div className="flex flex-col gap-2">
                 <p className="text-xs font-medium">{item.title}</p>
+                <p className="font-medium text-m">{item.price}€</p>
             </div>
-            <div className="flex items-center gap-2">
-                <p className="font-medium text-m">${item.price}</p>
                 <button>
-                    <XMarkIcon className="w-5 h-5 text-red-500 cursor-pointer" onClick={() => deleteProduct()}/>
+                    <TrashIcon className="w-5 h-5 text-red-500 cursor-pointer" onClick={() => deleteProduct()}/>
                 </button>
-            </div>
         </div>
     )
 }

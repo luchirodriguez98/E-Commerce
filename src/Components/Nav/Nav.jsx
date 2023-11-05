@@ -1,13 +1,16 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { NavLink } from "react-router-dom";
 import { ContextShoppingCart } from "../../Context/Context";
 import { useContext } from "react";
+import logo from '../../../assets/logo.png'
+import { totalPrice } from '../../Utils/Utils';
 
 const Nav = () =>{
 
 
     const context = useContext(ContextShoppingCart);
-    
     const isCartOpen = () =>{
         if(context.isCheckOutMenuOpen === false){
             context.openCheckOutMenu()
@@ -18,50 +21,46 @@ const Nav = () =>{
     }
 
     return(
-        <nav className="fixed top-0 z-10 flex items-center justify-between w-full px-5 py-5 text-sm font-light bg-red-100">
+        <nav className="fixed top-0 z-10 flex items-center justify-between w-full px-5 py-3 text-sm font-light bg-white border border-gray-10">
             {/* parte derecha */}
             <ul className="flex items-center gap-x-2">
                 <li className="text-xl font-bold text-yellow-400">
                     <NavLink
                         to="/"
                     >
-                        Shopi
+                        <img src={logo} className='w-32 outline-none'></img>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to="/"
-                    >
-                        All
-                    </NavLink>
+                    <div className="flex flex-row justify-around px-3 ml-3 text-gray-400 bg-gray-100 border border-gray-400 h-9 rounded-xl w-44">
+                    <input onChange={(e)=>context.setSearchValue(e.target.value)} value={context.searchValue} placeholder="Buscar productos..." className='w-3/4 bg-gray-100 border-none outline-none'></input>
+                    <MagnifyingGlassIcon className='items-center w-5 h-9'/>
+                    </div>
                 </li>
                 <li>
                     <NavLink
                         to="/clothes"
                     >
-                        Clothes
+                        Moda
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to="/electronics"
                     >
-                        Electronics
+                        Electronica
                     </NavLink>
                 </li>
                 <li>
                     <NavLink
                         to="/jewelery"
                     >
-                        Jewelery
+                        Joyeria
                     </NavLink>
                 </li>
             </ul>
             {/* parte izquierda */}
             <ul className="flex items-center justify-between gap-x-2">
-                <li className="text-gray-300">
-                    luchirodriguez98@gmail.com
-                </li>
                 <li>
                     <NavLink
                         to="/orders"
@@ -69,25 +68,27 @@ const Nav = () =>{
                         MyOrders
                     </NavLink>
                 </li>
-                <li>
+                {/* <li>
                     <NavLink
                         to="/account"
                     >
                         My Account
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink
+                </li> */}
+                <li >
+                    <NavLink 
+                        className='flex flex-row'
                         to="/login"
                     >
-                        Sign Out
+                        Hola Lucia
+                        <ChevronDownIcon className='w-4'/>
                     </NavLink>
                 </li>
-                <li className="flex flex-row items-center" onClick={() => isCartOpen() }>
+                <li className="flex flex-row items-center justify-between w-24 h-10 px-3 py-2 rounded-lg cursor-pointer bg-slate-200" onClick={() => isCartOpen() }>
                         <ShoppingCartIcon className="w-6 h-6 text-red-300" />
-                        {/* <div>
-                        {context.cartProducts.lenght}
-                        </div> */}
+                        <div className=''>
+                        {totalPrice(context.cartProducts)}€
+                        </div>
                 </li>
                 
             </ul>

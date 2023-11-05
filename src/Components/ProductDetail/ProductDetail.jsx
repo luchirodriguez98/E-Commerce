@@ -4,28 +4,25 @@ import { ContextShoppingCart } from '../../Context/Context';
 import { useContext } from 'react';
 
 const ProductDetail = () =>{
-    const {isProductDetailOpen, closeProductDetail, productInfo, cartProducts, setCartProducts, setCount, count} = useContext(ContextShoppingCart);
+    const {isProductDetailOpen, closeProductDetail, productInfo, addProduct} = useContext(ContextShoppingCart);
     // console.log(productInfo);
 
-    // const addProduct = (productInfo) =>{
-    //     setCount(count + 1)
-    //     setCartProducts([...cartProducts + productInfo])
-    // }
 
     return(
-        <aside className={`${isProductDetailOpen ? "flex flex-col" : "hidden"} product-detail fixed border-2 border-red-300 rounded-lg bg-white mt-2`}>
-                <div className='flex flex-row justify-between p-3 bg-red-100 rounded-t-lg h-13 '>
-                    <h2 className="text-xl font-medium text-red-500">DETAIL</h2>
+        <aside className={`${isProductDetailOpen ? "flex flex-col z-20" : "hidden"} product-detail fixed rounded-lg bg-white`}>
+                <div className='flex flex-row-reverse p-3 rounded-t-lg h-13 '>
                     <div onClick={() => closeProductDetail()}>
-                        <XMarkIcon className="w-6 h-6 text-red-500 cursor-pointer"/>
+                        <XMarkIcon className="items-end w-6 h-6 text-red-500 cursor-pointer"/>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-between h-full p-6">
-                    <h3 className="mb-5 text-lg font-semibold">{productInfo.title}</h3>
-                    <img src={productInfo.image} alt={productInfo.description} className="h-40 mb-5 rounded"/>
-                    <div className="flex flex-row items-center justify-arround">
-                        <p className="mr-3 font-semibold">${productInfo.price}</p>
-                        <button className="p-1 text-xs bg-red-200 border-2 border-red-300 rounded-lg">AÑADIR A LA CESTA</button>
+                <div className="flex flex-row h-full p-6">
+                    <div className='flex items-center justify-center mr-10 border border-gray-100 h-96 w-96'>
+                        <img src={productInfo.image} alt={productInfo.description} className="h-72"/>
+                    </div>
+                    <div className="flex flex-col justify-between h-48 mt-3 w-96">
+                        <h3 className="text-2xl ">{productInfo.title}</h3>
+                        <p className="pb-5 mr-3 text-4xl font-bold border-b-2 border-gray-100">{productInfo.price}€</p>
+                        <button className="w-40 h-10 p-1 text-base bg-red-200 rounded-2xl" onClick={(event) => addProduct(event, productInfo)}>Añadir al carrito</button>
                     </div>
                 </div>
 

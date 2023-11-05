@@ -27,6 +27,20 @@ const ShoppingCartProvider = ({children}) => {
 
     const openCheckOutMenu = () => setisCheckOutMenuOpen(true);
     const closeCheckOutMenu = () => setisCheckOutMenuOpen(false);
+
+    const saveInfo = (item)=>{
+        closeCheckOutMenu() 
+        openProductDetail() 
+        setProductInfo(item)
+
+    }
+    const addProduct = (event, item) =>{
+        event.stopPropagation();
+        setCount(count + 1)
+        setCartProducts([...cartProducts, item])
+        openCheckOutMenu() 
+        closeProductDetail() 
+    }
     
     return (
     <ContextShoppingCart.Provider 
@@ -49,7 +63,9 @@ const ShoppingCartProvider = ({children}) => {
             setProductInfo,
             setCartProducts,
             setOrder,
-            setSearchValue}}>
+            setSearchValue,
+            saveInfo,
+            addProduct}}>
         {children}
     </ContextShoppingCart.Provider>
 )}

@@ -13,16 +13,15 @@ function Electronics() {
   
   return (
     <Layout>
-       <div className="relative flex items-center justify-center mt-4 w-80">
-          <h1>Electronics</h1>
-        </div>
-      <div className="grid w-full max-w-screen-lg grid-cols-4 gap-2 mt-10">
+      <h1 className="w-full max-w-screen-lg mt-8 text-lg font-semibold">Electronica</h1>
+      <p className="w-full max-w-screen-lg mb-3 text-xs font-light text-gray-500">Mira los recien llegados en tecnologia</p>
+      <div className="grid w-full max-w-screen-lg grid-cols-4 gap-2 mt-8">
         {
           filteredItems?.map(item =>(
             <Card key={item.id} item={item}/>
           ))
         } 
-        <div className={`${context.isProductDetailOpen ? "block absolute top-0 right-0 left-0 bottom-0 h-screen background-transparent" : "hidden"}`}>
+        <div className={`${context.isProductDetailOpen ? "block fixed top-0 right-0 left-0 bottom-0 h-screen background-transparent z-10" : "hidden"}`}>
         </div>
       </div>
       <ProductDetail />

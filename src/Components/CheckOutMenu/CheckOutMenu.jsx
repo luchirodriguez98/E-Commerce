@@ -5,6 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { CheckOutMenuCards } from '../CheckOutMenuCards/CheckOutMenuCards';
 import { totalPrice } from '../../Utils/Utils';
 import './CheckOutMenu.css';
+import '../../Pages/background-modal.css'
 
 const CheckOutMenu = () =>{
     const context = useContext(ContextShoppingCart);
@@ -22,31 +23,37 @@ const CheckOutMenu = () =>{
     }
 
     return(
-            <aside className={`${context.isCheckOutMenuOpen ? "flex flex-col" : "hidden"} checkout-menu fixed border-2 border-red-300 rounded-lg bg-white mt-2`}>
-                    <div className='flex flex-row justify-between h-12 p-3 bg-red-100 rounded-t-lg '>
-                        <h2 className="text-xl font-medium text-red-500">Cart</h2>
+        <div>
+            <aside className={`${context.isCheckOutMenuOpen ? "flex flex-col z-20 h-full top-0 checkout-menu fixed bg-white" : "hidden"} `}>
+                    <div className='flex flex-row items-center px-5 pt-6 pb-5'>
                         <div onClick={() => context.closeCheckOutMenu()}>
-                            <XMarkIcon className="w-6 h-6 text-red-500 cursor-pointer"/>
+                            <XMarkIcon className="w-6 h-6 mr-5 text-xl font-bold cursor-pointer"/>
                         </div>
+                        <h2 className="text-xl font-semibold text-black">Carrito</h2>
                     </div>
-                    <div className="flex flex-col items-center justify-between flex-1 p-6 overflow-y-scroll ">
+                    <div className="flex flex-col flex-1 px-3 overflow-x-hidden overflow-y-scroll border-gray-100 border-y-2 ">
                         {
-                            context.cartProducts.map(item =>(
+                            context.cartProducts.length <= 0 
+                            ? <p className='flex items-center justify-center h-full'>No hay ningun articulo al carrito</p>
+                            : context.cartProducts.map(item =>(
                                 <CheckOutMenuCards item = {item} key={item.id}/>
                                 ))
                             } 
                     </div>
-                    <div className="relative bottom-0 w-full px-3 ">
+                    <div className="relative bottom-0 w-full px-3 mt-3 ">
                         <div className="flex justify-between">
-                            <p className="font-light">Total:</p>
-                            <p className="font-medium">$ {totalPrice(context.cartProducts)}</p>
+                            <p className="text-lg font-light">Total</p>
+                            <p className="text-2xl font-bold">{totalPrice(context.cartProducts)}€</p>
                         </div>
                         <Link to="/orders/last">
-                            <button onClick={() => saveMyOrder()} className='w-full p-2 mt-3 mb-3 border-2 border-red-500 rounded'>Realizar Pedido</button>
+                            <button onClick={() => saveMyOrder()} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Realizar Pedido</button>
                         </Link>
                     </div>
 
             </aside>
+                    <div className={`${context.isCheckOutMenuOpen ? "block fixed top-0 right-0 left-0 bottom-0 h-full background-transparent z-10" : "hidden"}`}>
+                    </div>
+        </div>
     )
 }
 
