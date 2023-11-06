@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { ContextShoppingCart } from '../../Context/Context';
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { CheckOutMenuCards } from '../CheckOutMenuCards/CheckOutMenuCards';
@@ -8,23 +7,12 @@ import './CheckOutMenu.css';
 import '../../Pages/background-modal.css'
 
 const CheckOutMenu = () =>{
+    
     const context = useContext(ContextShoppingCart);
 
-    const saveMyOrder= () =>{
-        const savedOrder = {
-            date: new Date(),
-            product: context.cartProducts,
-            totalProducts: context.cartProducts.length,
-            totalPrice: totalPrice(context.cartProducts),
-        };
-        context.closeCheckOutMenu()
-        context.setOrder([...context.order, savedOrder])
-        context.setCartProducts([])
-    }
-
     return(
-        <div>
-            <aside className={`${context.isCheckOutMenuOpen ? "flex flex-col z-20 h-full top-0 checkout-menu fixed bg-white" : "hidden"} `}>
+        <div className={`${context.isCheckOutMenuOpen ? "flex justify-center items-center fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`}>
+            <aside className="fixed top-0 z-20 flex flex-col h-full bg-white checkout-menu">
                     <div className='flex flex-row items-center px-5 pt-6 pb-5'>
                         <div onClick={() => context.closeCheckOutMenu()}>
                             <XMarkIcon className="w-6 h-6 mr-5 text-xl font-bold cursor-pointer"/>
@@ -45,14 +33,11 @@ const CheckOutMenu = () =>{
                             <p className="text-lg font-light">Total</p>
                             <p className="text-2xl font-bold">{totalPrice(context.cartProducts)}€</p>
                         </div>
-                        <Link to="/orders/last">
-                            <button onClick={() => saveMyOrder()} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Realizar Pedido</button>
-                        </Link>
+                            <button onClick={() => context.saveOrderData()} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Realizar Pedido</button>
+
                     </div>
 
             </aside>
-                    <div className={`${context.isCheckOutMenuOpen ? "block fixed top-0 right-0 left-0 bottom-0 h-full background-transparent z-10" : "hidden"}`}>
-                    </div>
         </div>
     )
 }

@@ -3,6 +3,7 @@ import { Card } from "../../Components/Card/Card"
 import { Layout } from "../../Components/Layout/Layout"
 import { ProductDetail } from "../../Components/ProductDetail/ProductDetail";
 import { ContextShoppingCart } from "../../Context/Context";
+import { OrderDataModal } from "../../Components/OrderDataModal/OrderDataModal";
 
 
 
@@ -21,10 +22,9 @@ function Electronics() {
             <Card key={item.id} item={item}/>
           ))
         } 
-        <div className={`${context.isProductDetailOpen ? "block fixed top-0 right-0 left-0 bottom-0 h-screen background-transparent z-10" : "hidden"}`}>
-        </div>
       </div>
       <ProductDetail />
+      <OrderDataModal />
     </Layout>
   )
 }

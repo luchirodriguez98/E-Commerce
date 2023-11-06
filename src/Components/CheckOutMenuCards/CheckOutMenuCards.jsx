@@ -13,7 +13,7 @@ const CheckOutMenuCards = ({item}) =>{
     }
     
     return(
-        <div className="flex items-center justify-between w-full my-2 border-b-2 border-gray-100 h-28">
+        <div className="flex items-center justify-between w-full gap-2 my-2 border-b-2 border-gray-100 h-28">
             <div className="flex flex-row items-center gap-2">
                 <figure className="w-14 h-14">
                     <img className="object-cover mr-1 rounded-lg"src={item.image} alt="" />

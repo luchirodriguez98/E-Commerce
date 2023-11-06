@@ -5,6 +5,7 @@ import { Layout } from "../../Components/Layout/Layout"
 import { ProductDetail } from "../../Components/ProductDetail/ProductDetail";
 import { ContextShoppingCart } from "../../Context/Context";
 import '../background-modal.css'
+import { OrderDataModal } from "../../Components/OrderDataModal/OrderDataModal";
 
 
 
@@ -23,10 +24,9 @@ function Home() {
             <Card key={item.id} item={item}/>
           ))
         } 
-        <div className={`${context.isProductDetailOpen ? "block fixed top-0 right-0 left-0 bottom-0 h-full background-transparent z-10" : "hidden"}`}>
-        </div>
       </div>
       <ProductDetail />
+      <OrderDataModal />
     </Layout>
   )
 }

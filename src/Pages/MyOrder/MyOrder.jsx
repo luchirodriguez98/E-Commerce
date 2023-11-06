@@ -20,11 +20,11 @@ function MyOrder() {
 
     return (
       <Layout>
-        <div className="relative flex items-center justify-center w-80">
-          <Link to='/orders' className="absolute left-0">
+        <div className="relative flex flex-row items-center justify-center w-full gap-5 mt-8">
+          <Link to='/orders' className="">
             <ChevronLeftIcon className="w-6 h-6 text-red-500 cursor-pointer"/>
           </Link>
-          <h1>My Order</h1>
+          <h1 className="max-w-screen-lg text-lg font-semibold ">Tramitar pedido</h1>      
         </div>
         <div className="flex flex-col items-center justify-between w-80">
           {
