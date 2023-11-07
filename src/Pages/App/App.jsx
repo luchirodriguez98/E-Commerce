@@ -10,7 +10,7 @@ import { MyAccount } from '../MyAccount/MyAccount';
 import { MyOrder } from '../MyOrder/MyOrder';
 import { MyOrders } from '../MyOrders/MyOrders';
 import { NotFound } from '../NotFound/NotFound';
-import { SignIn } from '../SignIn/SignIn';
+import { Login } from '../Login/Login';
 import { CheckOutMenu } from '../../Components/CheckOutMenu/CheckOutMenu';
 
 import './App.css';
@@ -55,7 +55,7 @@ const AppRoutes = () =>{
     },
     {
       path: '/login',
-      element: <SignIn />
+      element: <Login />
     },
     {
       path: '/*',

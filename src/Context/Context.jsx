@@ -14,16 +14,19 @@ const ShoppingCartProvider = ({children}) => {
         .catch(error => error)
     },[]);
     
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([]);
     const [count, setCount] = useState(0);
-    const [cartProducts, setCartProducts] = useState([]);
-    const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
-    const [isOrderDataOpen, setisOrderDataOpen] = useState(false);
-    const [isCheckOutMenuOpen, setisCheckOutMenuOpen] = useState(false);
     const [productInfo, setProductInfo] = useState({});
     const [order, setOrder] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [isMenuCategoriesOpen, setisMenuCategoriesOpen] = useState(false)
+    const [user, setUser] = useState('');
+    const [userVisible, setUserVisible] = useState(false);
+    const [cartProducts, setCartProducts] = useState([]);
+    const [isMenuUserOpen, setIsMenuUserOpen ] = useState(false);
+    const [isMenuCategoriesOpen, setisMenuCategoriesOpen] = useState(false);
+    const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
+    const [isOrderDataOpen, setisOrderDataOpen] = useState(false);
+    const [isCheckOutMenuOpen, setisCheckOutMenuOpen] = useState(false);
     const [directionValue, setDirectionValue] = useState({
         street: '',
         number: '',
@@ -38,11 +41,18 @@ const ShoppingCartProvider = ({children}) => {
     const openOrderData = () => setisOrderDataOpen(true);
     const closeOrderData = () => setisOrderDataOpen(false);
 
-    const openCheckOutMenu = () => setisCheckOutMenuOpen(true);
+    const openCheckOutMenu = () => {
+        setisCheckOutMenuOpen(true)
+        setIsMenuUserOpen(false)
+        setisMenuCategoriesOpen(false);
+    };
     const closeCheckOutMenu = () => setisCheckOutMenuOpen(false);
 
     const saveInfo = (item)=>{
         closeCheckOutMenu() 
+        closeOrderData()
+        setisMenuCategoriesOpen(false)
+        setIsMenuUserOpen(false)
         openProductDetail() 
         setProductInfo(item)
 
@@ -103,7 +113,13 @@ const ShoppingCartProvider = ({children}) => {
     const avoidCloseModal = (event) => {
         event.stopPropagation(); // Evita que el clic dentro del modal cierre el modal
     }
-
+    const toggleVisibilityUser = () =>{
+        setUserVisible(!userVisible)
+    }
+    const toggleMenu = (menuToOpen, menuToClose) =>{
+        menuToOpen((oldStatus)=>!oldStatus)
+        menuToClose((oldStatus)=>!oldStatus)
+    }
     return (
     <ContextShoppingCart.Provider 
         value={
@@ -114,11 +130,14 @@ const ShoppingCartProvider = ({children}) => {
             isCheckOutMenuOpen, 
             isOrderDataOpen,
             isMenuCategoriesOpen,
+            isMenuUserOpen, 
             productInfo, 
             cartProducts,
             order,
             searchValue,
             directionValue,
+            user,
+            userVisible,
             setItems,
             openProductDetail, 
             closeProductDetail, 
@@ -133,6 +152,9 @@ const ShoppingCartProvider = ({children}) => {
             setSearchValue,
             setDirectionValue,
             setisMenuCategoriesOpen,
+            setUser,
+            setUserVisible,
+            setIsMenuUserOpen,
             saveInfo,
             addProduct,
             deleteProduct,
@@ -140,7 +162,9 @@ const ShoppingCartProvider = ({children}) => {
             saveOrderData,
             titleLarge,
             renderIcon,
-            avoidCloseModal
+            avoidCloseModal,
+            toggleVisibilityUser,
+            toggleMenu
             }}>
         {children}
     </ContextShoppingCart.Provider>

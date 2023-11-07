@@ -7,11 +7,14 @@ import { useContext } from "react";
 import logo from '../../../assets/logo.png'
 import { totalPrice } from '../../Utils/Utils';
 import { CategoriesMenu } from '../CategoriesMenu/CategoriesMenu';
+import { UserMenu } from '../UserMenu/UserMenu';
 
 const Nav = () =>{
 
 
     const context = useContext(ContextShoppingCart);
+
+    // const user = context.user && context.userVisible ? `Hola ${context.user}` : 'Inicia sesion';
 
     const isCartOpen = () =>{
         if(context.isCheckOutMenuOpen === false){
@@ -39,57 +42,17 @@ const Nav = () =>{
                     <MagnifyingGlassIcon className='items-center w-5 h-9'/>
                     </div>
                 </li>
-                <CategoriesMenu />
-                {/* <li onClick={context.openMenuCategories()} className='cursor-pointer'>
-                    Categories
-                    <ul className={`${context.isMenuCategoriesOpen ? "flex fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`}>
-                        <li>
-                            <NavLink
-                                to="/clothes"
-                            >
-                                Moda
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/electronics"
-                            >
-                                Electronica
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/jewelery"
-                            >
-                                Joyeria
-                            </NavLink>
-                        </li>
-                    </ul>
-                </li> */}
             </ul>
             {/* parte izquierda */}
             <ul className="flex items-center justify-between gap-x-2">
+                <CategoriesMenu />
+                <UserMenu />
                 <li>
-                    <NavLink
-                        to="/orders"
-                    >
-                        Mis Pedidos
-                    </NavLink>
-                </li>
-                {/* <li>
-                    <NavLink
-                        to="/account"
-                    >
-                        My Account
-                    </NavLink>
-                </li> */}
-                <li >
                     <NavLink 
-                        className='flex flex-row'
+                        className={`${context.user && !context.userVisible || !context.user && !context.userVisible ? "block font-semibold" : "hidden"}`}
                         to="/login"
                     >
-                        Hola Lucia
-                        <ChevronDownIcon className='w-4'/>
+                        Inicia sesion
                     </NavLink>
                 </li>
                 <li className="flex flex-row items-center justify-between w-24 h-10 px-3 py-2 rounded-lg cursor-pointer bg-slate-200" onClick={() => isCartOpen() }>

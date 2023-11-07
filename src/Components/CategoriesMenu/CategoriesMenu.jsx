@@ -7,29 +7,25 @@ const CategoriesMenu = () => {
     
     const context = useContext(ContextShoppingCart)
 
-    const toggleMenu = () =>{
-        context.setisMenuCategoriesOpen((oldStatus)=>!oldStatus)
-    }
-
     return(
-    <li onClick={()=>toggleMenu()} className='relative cursor-pointer'>
+    <li onClick={()=>context.toggleMenu(context.setisMenuCategoriesOpen, context.setIsMenuUserOpen)} className='relative cursor-pointer'>
         Categories
         <ul className={`${context.isMenuCategoriesOpen ? "flex flex-col fixed menu-position h-40 justify-between border-2 border-gray-100 z-10 bg-white p-5" : "hidden"}`}>
-        <li className="">
+        <li>
                 <NavLink
                     to="/"
                 >
                     Home
                 </NavLink>
             </li>
-            <li className="">
+            <li>
                 <NavLink
                     to="/clothes"
                 >
                     Moda
                 </NavLink>
             </li>
-            <li>
+            <li> 
                 <NavLink
                     to="/electronics"
                 >
