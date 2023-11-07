@@ -1,4 +1,3 @@
-
 const totalPrice = (products) =>{
     let sum = 0;
 
@@ -9,4 +8,13 @@ const totalPrice = (products) =>{
     return sum.toFixed(2);
 }
 
-export {totalPrice}
+const formToString = (direction) =>{
+
+    const floor = direction.aditional ? ` ${direction.aditional},` : '';
+
+    const directionOnString = `Calle ${direction.street} ${direction.number},${floor} ${direction.city}, ${direction.zipcode}`
+
+    return directionOnString
+}
+
+export {totalPrice, formToString}

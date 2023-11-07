@@ -11,8 +11,8 @@ const CheckOutMenu = () =>{
     const context = useContext(ContextShoppingCart);
 
     return(
-        <div className={`${context.isCheckOutMenuOpen ? "flex justify-center items-center fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`}>
-            <aside className="fixed top-0 z-20 flex flex-col h-full bg-white checkout-menu">
+        <div className={`${context.isCheckOutMenuOpen ? "flex justify-center items-center fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`} onClick={()=>context.closeCheckOutMenu()}>
+            <aside className="fixed top-0 z-20 flex flex-col h-full bg-white checkout-menu" onClick={(event)=>context.avoidCloseModal(event)}>
                     <div className='flex flex-row items-center px-5 pt-6 pb-5'>
                         <div onClick={() => context.closeCheckOutMenu()}>
                             <XMarkIcon className="w-6 h-6 mr-5 text-xl font-bold cursor-pointer"/>

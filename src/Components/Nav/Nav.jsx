@@ -6,11 +6,13 @@ import { ContextShoppingCart } from "../../Context/Context";
 import { useContext } from "react";
 import logo from '../../../assets/logo.png'
 import { totalPrice } from '../../Utils/Utils';
+import { CategoriesMenu } from '../CategoriesMenu/CategoriesMenu';
 
 const Nav = () =>{
 
 
     const context = useContext(ContextShoppingCart);
+
     const isCartOpen = () =>{
         if(context.isCheckOutMenuOpen === false){
             context.openCheckOutMenu()
@@ -21,7 +23,7 @@ const Nav = () =>{
     }
 
     return(
-        <nav className="fixed top-0 z-10 flex items-center justify-between w-full px-5 py-3 text-sm font-light bg-white border border-gray-10">
+        <nav className="fixed top-0 z-10 flex items-center justify-between w-full px-5 py-3 text-sm font-light bg-white border-b-2 border-gray-100">
             {/* parte derecha */}
             <ul className="flex items-center gap-x-2">
                 <li className="text-xl font-bold text-yellow-400">
@@ -37,27 +39,33 @@ const Nav = () =>{
                     <MagnifyingGlassIcon className='items-center w-5 h-9'/>
                     </div>
                 </li>
-                <li>
-                    <NavLink
-                        to="/clothes"
-                    >
-                        Moda
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/electronics"
-                    >
-                        Electronica
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink
-                        to="/jewelery"
-                    >
-                        Joyeria
-                    </NavLink>
-                </li>
+                <CategoriesMenu />
+                {/* <li onClick={context.openMenuCategories()} className='cursor-pointer'>
+                    Categories
+                    <ul className={`${context.isMenuCategoriesOpen ? "flex fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`}>
+                        <li>
+                            <NavLink
+                                to="/clothes"
+                            >
+                                Moda
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/electronics"
+                            >
+                                Electronica
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/jewelery"
+                            >
+                                Joyeria
+                            </NavLink>
+                        </li>
+                    </ul>
+                </li> */}
             </ul>
             {/* parte izquierda */}
             <ul className="flex items-center justify-between gap-x-2">
@@ -65,7 +73,7 @@ const Nav = () =>{
                     <NavLink
                         to="/orders"
                     >
-                        MyOrders
+                        Mis Pedidos
                     </NavLink>
                 </li>
                 {/* <li>
