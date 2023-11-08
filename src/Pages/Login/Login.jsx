@@ -9,7 +9,6 @@ function Login() {
 
   const handleNameChange = (event) =>{
     context.setUser(event.target.value)
-    console.log(event);
   }
 
     return (

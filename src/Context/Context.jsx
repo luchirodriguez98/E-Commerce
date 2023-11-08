@@ -6,7 +6,6 @@ const ContextShoppingCart = createContext();
 // eslint-disable-next-line react/prop-types
 const ShoppingCartProvider = ({children}) => {
 
-    
     useEffect(()=>{
         fetch('https://fakestoreapi.com/products')
         .then(response => response.json())
@@ -116,9 +115,14 @@ const ShoppingCartProvider = ({children}) => {
     const toggleVisibilityUser = () =>{
         setUserVisible(!userVisible)
     }
-    const toggleMenu = (menuToOpen, menuToClose) =>{
-        menuToOpen((oldStatus)=>!oldStatus)
-        menuToClose((oldStatus)=>!oldStatus)
+    const menuToggle = (menuToToggle, menuToClose) =>{
+        menuToToggle((oldStatus)=>!oldStatus)
+        menuToClose(false)
+    }
+    const logout = () =>{
+        setUser('')
+        setUserVisible(false)
+        setOrder([])
     }
     return (
     <ContextShoppingCart.Provider 
@@ -164,7 +168,8 @@ const ShoppingCartProvider = ({children}) => {
             renderIcon,
             avoidCloseModal,
             toggleVisibilityUser,
-            toggleMenu
+            menuToggle,
+            logout
             }}>
         {children}
     </ContextShoppingCart.Provider>

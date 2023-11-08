@@ -5,10 +5,23 @@ import { CheckOutMenuCards } from '../CheckOutMenuCards/CheckOutMenuCards';
 import { totalPrice } from '../../Utils/Utils';
 import './CheckOutMenu.css';
 import '../../Pages/background-modal.css'
+import { Link } from 'react-router-dom';
 
 const CheckOutMenu = () =>{
     
     const context = useContext(ContextShoppingCart);
+
+    const buttonToRender = () =>{
+        if(!context.user && context.cartProducts.length <= 0 || context.user && context.cartProducts.length <= 0){
+            return <button className='w-full p-2 mt-3 mb-3 border-2 border-red-100 rounded'>Añade productos a tu carrito</button>
+        }if(context.user){
+            return <button onClick={() => context.saveOrderData()} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Realizar Pedido</button>
+        }if(!context.user){return(
+            <Link to="/login">
+                <button onClick={context.closeCheckOutMenu} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Inicia sesion</button>
+            </Link>
+        )}
+    }
 
     return(
         <div className={`${context.isCheckOutMenuOpen ? "flex justify-center items-center fixed top-0 right-0 left-0 bottom-0 h-full w-full background-transparent z-10" : "hidden"}`} onClick={()=>context.closeCheckOutMenu()}>
@@ -33,8 +46,7 @@ const CheckOutMenu = () =>{
                             <p className="text-lg font-light">Total</p>
                             <p className="text-2xl font-bold">{totalPrice(context.cartProducts)}€</p>
                         </div>
-                            <button onClick={() => context.saveOrderData()} className='w-full p-2 mt-3 mb-3 bg-red-500 rounded'>Realizar Pedido</button>
-
+                            {buttonToRender()}
                     </div>
 
             </aside>

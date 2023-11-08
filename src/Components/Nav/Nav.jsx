@@ -47,7 +47,7 @@ const Nav = () =>{
             <ul className="flex items-center justify-between gap-x-2">
                 <CategoriesMenu />
                 <UserMenu />
-                <li>
+                <li onClick={()=>context.setisMenuCategoriesOpen(false)}>
                     <NavLink 
                         className={`${context.user && !context.userVisible || !context.user && !context.userVisible ? "block font-semibold" : "hidden"}`}
                         to="/login"

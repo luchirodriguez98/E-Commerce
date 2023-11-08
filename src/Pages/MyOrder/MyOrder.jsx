@@ -13,11 +13,21 @@ function MyOrder() {
   // leer la url
   const currentPath = window.location.pathname;
   let indexOrder = currentPath.substring(currentPath.lastIndexOf('/') + 1)
-
+  
   if(indexOrder === 'last') {
     indexOrder = context.order?.length -1;
   }
-
+  
+  const buttonToRender = () =>{
+    if(currentPath.substring(currentPath.lastIndexOf('/') + 1) === 'last') {
+      return(<Link to="/">
+        <button className="w-full h-10 p-1 mt-8 text-base bg-red-200 rounded-xl" onClick={() => context.setDirectionValue('')}>Pagar</button>
+      </Link>)
+    }else{
+      return <button className="w-full h-10 p-1 mt-8 text-base border-2 border-red-200 cursor-auto rounded-xl">Ya ha sido abonado</button>
+    }
+  }
+  
 
     return (
       <Layout>
@@ -54,9 +64,7 @@ function MyOrder() {
               <p className=''>Manera de pago: {context.order[indexOrder]?.pay}</p>
               <p className="text-base font-semibold text-black">Total: {context.order[indexOrder]?.totalPrice}€</p>
             </div>
-            <Link to="/">
-                <button className="w-full h-10 p-1 mt-8 text-base bg-red-200 rounded-xl" onClick={() => context.setDirectionValue('')}>Pagar</button>
-            </Link>
+            {buttonToRender()}
           </div>     
         </div>
       </Layout>
