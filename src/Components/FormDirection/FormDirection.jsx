@@ -13,6 +13,22 @@ function FormDirection() {
         context.setDirectionValue((prevDirection)=>({...prevDirection, [inputName] : inputValue}))
     }
 
+    const formValidation = () =>{
+        if(
+            !context.directionValue.street ||
+            !context.directionValue.number ||
+            !context.directionValue.city ||
+            !context.directionValue.zipcode
+            ){
+                return <button className="h-10 p-1 px-5 mt-5 text-base border-2 border-red-200 rounded-2xl">Rellena los campos obligatorios</button>
+            }else{return(
+                <Link to="/orders/last">
+                    <button onClick={()=>context.saveMyOrder()} className="w-40 h-10 p-1 mt-5 text-base bg-red-200 rounded-2xl">Guardar</button>
+                </Link>
+            )
+            }
+    }
+
     return(
         <form id="address-form">
             <label htmlFor="street">Calle:</label>
@@ -25,9 +41,7 @@ function FormDirection() {
                 <input required type="text" id="city" name="city" value={context.directionValue.city} onChange={handleFormChange}className='w-full h-10 p-1 border border-gray-300 rounded-md'/>
             <label htmlFor="zipcode">Código Postal:</label>
                 <input required type="number" id="zipcode" name="zipcode" value={context.directionValue.zipcode} onChange={handleFormChange} className='w-full h-10 p-1 border border-gray-300 rounded-md'/>
-            <Link to="/orders/last">
-                <button onClick={()=>context.saveMyOrder()} className="w-40 h-10 p-1 mt-5 text-base bg-red-200 rounded-2xl">Guardar</button>
-            </Link>
+            {formValidation()}
         </form>
     )
 }
