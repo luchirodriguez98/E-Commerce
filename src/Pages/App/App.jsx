@@ -22,10 +22,6 @@ const AppRoutes = () =>{
       element: <Home />
     },
     {
-      path: '/VirtuShop/',
-      element: <Home />
-    },
-    {
       path: '/clothes',
       element: <Clothes />
     },
