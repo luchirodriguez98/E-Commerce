@@ -20,10 +20,10 @@ function FormDirection() {
             !context.directionValue.city ||
             !context.directionValue.zipcode
             ){
-                return <button className="h-10 p-1 px-5 mt-5 text-base border-2 border-red-200 rounded-2xl">Rellena los campos obligatorios</button>
+                return <button className="w-full h-10 p-1 px-5 mt-5 text-base border-2 border-red-200 rounded-2xl">Faltan datos obligatorios</button>
             }else{return(
                 <Link to="/orders/last">
-                    <button onClick={()=>context.saveMyOrder()} className="w-40 h-10 p-1 mt-5 text-base bg-red-200 rounded-2xl">Guardar</button>
+                    <button onClick={()=>context.saveMyOrder()} className="w-full h-10 p-1 mt-5 text-base bg-red-200 rounded-2xl">Guardar</button>
                 </Link>
             )
             }

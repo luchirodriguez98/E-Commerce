@@ -22,7 +22,7 @@ const ShoppingCartProvider = ({children}) => {
     const [userVisible, setUserVisible] = useState(false);
     const [cartProducts, setCartProducts] = useState([]);
     const [isMenuUserOpen, setIsMenuUserOpen ] = useState(false);
-    const [isMenuCategoriesOpen, setisMenuCategoriesOpen] = useState(false);
+    const [isDropDownMenuOpen, setisDropDownMenuOpen] = useState(false);
     const [isProductDetailOpen, setisProductDetailOpen] = useState(false);
     const [isOrderDataOpen, setisOrderDataOpen] = useState(false);
     const [isCheckOutMenuOpen, setisCheckOutMenuOpen] = useState(false);
@@ -43,14 +43,14 @@ const ShoppingCartProvider = ({children}) => {
     const openCheckOutMenu = () => {
         setisCheckOutMenuOpen(true)
         setIsMenuUserOpen(false)
-        setisMenuCategoriesOpen(false);
+        setisDropDownMenuOpen(false);
     };
     const closeCheckOutMenu = () => setisCheckOutMenuOpen(false);
 
     const saveInfo = (item)=>{
         closeCheckOutMenu() 
         closeOrderData()
-        setisMenuCategoriesOpen(false)
+        setisDropDownMenuOpen(false)
         setIsMenuUserOpen(false)
         openProductDetail() 
         setProductInfo(item)
@@ -115,15 +115,15 @@ const ShoppingCartProvider = ({children}) => {
     const toggleVisibilityUser = () =>{
         setUserVisible(!userVisible)
     }
-    const menuToggle = (menuToToggle, menuToClose) =>{
-        menuToToggle((oldStatus)=>!oldStatus)
-        menuToClose(false)
+    const menuToggle = (menu) =>{
+        menu((oldStatus)=>!oldStatus)
     }
     const logout = () =>{
         setUser('')
         setUserVisible(false)
         setOrder([])
     }
+
     return (
     <ContextShoppingCart.Provider 
         value={
@@ -133,7 +133,7 @@ const ShoppingCartProvider = ({children}) => {
             isProductDetailOpen,
             isCheckOutMenuOpen, 
             isOrderDataOpen,
-            isMenuCategoriesOpen,
+            isDropDownMenuOpen,
             isMenuUserOpen, 
             productInfo, 
             cartProducts,
@@ -155,7 +155,7 @@ const ShoppingCartProvider = ({children}) => {
             setOrder,
             setSearchValue,
             setDirectionValue,
-            setisMenuCategoriesOpen,
+            setisDropDownMenuOpen,
             setUser,
             setUserVisible,
             setIsMenuUserOpen,

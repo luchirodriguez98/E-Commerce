@@ -73,7 +73,7 @@ function App() {
        <BrowserRouter>
           <Nav></Nav>
           <CheckOutMenu />
-          <AppRoutes />
+          <AppRoutes/>
         </BrowserRouter>
       </ShoppingCartProvider>
   )

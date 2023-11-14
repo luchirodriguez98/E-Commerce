@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import { Layout } from "../../Components/Layout/Layout"
 import { ContextShoppingCart } from '../../Context/Context';
 import { OrderCard } from '../../Components/OrderCard/OrderCard';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid'
+import './MyOrden.css'
 
 
 function MyOrder() {
@@ -21,34 +22,45 @@ function MyOrder() {
   const buttonToRender = () =>{
     if(currentPath.substring(currentPath.lastIndexOf('/') + 1) === 'last') {
       return(<Link to="/">
-        <button className="w-full h-10 p-1 mt-8 text-base bg-red-200 rounded-xl" onClick={() => context.setDirectionValue('')}>Pagar</button>
+        <button className="w-full h-10 p-1 text-base bg-red-200 rounded-xl" onClick={() => context.setDirectionValue('')}>Pagar</button>
       </Link>)
     }else{
-      return <button className="w-full h-10 p-1 mt-8 text-base border-2 border-red-200 cursor-auto rounded-xl">Ya ha sido abonado</button>
+      return <button className="w-full h-10 p-1 text-base border-2 border-red-200 cursor-auto rounded-xl">Ya ha sido abonado</button>
     }
   }
   
 
     return (
       <Layout>
-        <div className='w-full px-10'>
-          <Link to='/orders' className="relative flex flex-row w-full gap-5 mt-8">
+        <div className='w-full px-2 md:px-10'>
+          <Link to='/orders' className="relative flex flex-row w-full gap-2 mt-8">
             <ChevronLeftIcon className="w-6 h-6 text-black cursor-pointer"/>
             <p>Pedidos anteriores</p>
           </Link>
         </div>
-        <div className='flex w-5/6 gap-5 mt-5 h-96'>
-          <div className='w-4/6 h-full'>
-            <div className='p-5 mb-3 border border-gray-300 rounded-md h-2/4'>
-              <h2 className="mb-6 text-2xl font-semibold text-black">Entrega</h2>
-              <div className='flex flex-col justify-between h-2/4'>
-                <p>Fecha de pedido: {context.order[indexOrder]?.date}</p>
-                <p>Direccion de entrega: {context.order[indexOrder]?.direction}</p>
-              </div>
+        <div className='grid w-11/12 grid-cols-1 my-5 h-2/4 md:gap-5 md:grid-cols-2'>
+          <div className='h-full mb-3'>
+            <div className='p-5 mb-3 border border-gray-300 rounded-md'>
+              <h2 className="mb-3 text-2xl font-semibold text-black ">Entrega</h2>
+              <ul className='flex flex-col justify-between pl-3 h-2/4'>
+                <li className='mb-1 list-disc'>Fecha de pedido: {context.order[indexOrder]?.date}</li>
+                <li className='list-disc'>Direccion de entrega:</li>
+                <p>{context.order[indexOrder]?.direction}</p>
+              </ul>
             </div>
-            <div className="flex flex-col justify-between w-full p-5 border border-gray-300 rounded-md h-2/4">
+            <div className='p-5 border border-gray-300 rounded-md'>
+            <h2 className="mb-3 text-2xl font-bold text-black h-1/4">Resumen</h2>
+            <ul className='flex flex-col justify-between pl-3 mb-8 h-2/5'>
+              <li className='mb-1 list-disc'>Numero de pedido: #{context.order[indexOrder]?.orderNumber}</li>
+              <li className='mb-1 list-disc'>Manera de pago: {context.order[indexOrder]?.pay}</li>
+              <p className="text-base font-medium text-black">Total: {context.order[indexOrder]?.totalPrice}€</p>
+            </ul>
+            {buttonToRender()}
+          </div>
+          </div>
+          <div className="flex flex-col justify-between w-full p-5 border border-gray-300 rounded-md section-articles">
               <h2 className="mb-6 text-2xl font-semibold text-black">Articulos</h2>
-              <div className="flex flex-col flex-1 px-3 overflow-x-hidden overflow-y-scroll ">
+              <div className="flex flex-col flex-1 overflow-x-hidden overflow-y-scroll ">
                 {
                   context.order[indexOrder]?.product.map(item =>(
                     <OrderCard item = {item} key={item.id}/>
@@ -56,16 +68,7 @@ function MyOrder() {
                 } 
               </div>
             </div>
-          </div>
-          <div className='w-1/4 h-full p-5 border border-gray-300 rounded-md'>
-            <h2 className="text-2xl font-semibold text-black h-1/4">Resumen</h2>
-            <div className='flex flex-col justify-between mb-8 h-2/5'>
-              <p className=''>Numero de pedido: #{context.order[indexOrder]?.orderNumber}</p>
-              <p className=''>Manera de pago: {context.order[indexOrder]?.pay}</p>
-              <p className="text-base font-semibold text-black">Total: {context.order[indexOrder]?.totalPrice}€</p>
-            </div>
-            {buttonToRender()}
-          </div>     
+               
         </div>
       </Layout>
     )

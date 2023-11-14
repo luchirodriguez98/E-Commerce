@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react"
 import { ContextShoppingCart } from "../../Context/Context"
 import { TrashIcon } from '@heroicons/react/24/solid'
@@ -17,9 +18,9 @@ const CheckOutMenuCards = ({item}) =>{
                 <p className="text-xs font-medium">{context.titleLarge(item.title)}</p>
                 <p className="font-medium text-m">{item.price}€</p>
             </div>
-                <button>
-                    <TrashIcon className="w-5 h-5 text-red-500 cursor-pointer" onClick={() => context.deleteProduct(item)}/>
-                </button>
+            <button>
+                <TrashIcon className="w-5 h-5 text-red-500 cursor-pointer" onClick={() => context.deleteProduct(item)}/>
+            </button>
         </div>
     )
 }
