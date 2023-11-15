@@ -16,7 +16,7 @@ const OrderCard = ({item}) =>{
                 <p className="text-xs font-medium">{context.titleLarge(item.title)}</p>
             </div>
             <div className="flex items-center gap-2">
-                <p className="font-medium text-m">${item.price}</p>
+                <p className="mr-2 font-medium text-m">${item.price}</p>
             </div>
         </div>
     )

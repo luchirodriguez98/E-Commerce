@@ -21,12 +21,12 @@ function Login() {
                 type="text" 
                 name="name" 
                 id="name" 
-                className='w-2/4 h-10 p-1 mb-3 border border-gray-300 rounded-md' 
+                className='w-full max-w-sm h-10 p-1 mb-3 border border-gray-300 rounded-md' 
                 value={context.user} 
                 onChange={(event)=>handleNameChange(event)}
               />
             <label htmlFor="pass">Contraseña</label>
-              <input type="password" name="pass" id="pass" className='w-2/4 h-10 p-1 mb-3 border border-gray-300 rounded-md'/>
+              <input type="password" name="pass" id="pass" className='w-full max-w-sm h-10 p-1 mb-3 border border-gray-300 rounded-md'/>
             <Link to="/">
               <button className="w-40 h-10 p-1 mt-5 text-base bg-red-200 rounded-2xl" onClick={context.toggleVisibilityUser}>Inciar sesion</button>
             </Link>

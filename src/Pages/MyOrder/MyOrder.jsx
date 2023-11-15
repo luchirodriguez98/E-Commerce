@@ -20,11 +20,11 @@ function MyOrder() {
   }
   
   const buttonToRender = () =>{
-    if(currentPath.substring(currentPath.lastIndexOf('/') + 1) === 'last') {
+    if(!context.order[indexOrder].itsPaid) {
       return(<Link to="/">
-        <button className="w-full h-10 p-1 text-base bg-red-200 rounded-xl" onClick={() => context.setDirectionValue('')}>Pagar</button>
+        <button className="w-full h-10 p-1 text-base bg-red-200 rounded-xl" onClick={() => context.paidOrder(indexOrder)}>Pagar</button>
       </Link>)
-    }else{
+    }if(context.order[indexOrder].itsPaid){
       return <button className="w-full h-10 p-1 text-base border-2 border-red-200 cursor-auto rounded-xl">Ya ha sido abonado</button>
     }
   }

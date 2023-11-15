@@ -3,6 +3,7 @@ import { formToString, totalPrice } from "../Utils/Utils";
 
 const ContextShoppingCart = createContext();
 
+
 // eslint-disable-next-line react/prop-types
 const ShoppingCartProvider = ({children}) => {
 
@@ -75,13 +76,14 @@ const ShoppingCartProvider = ({children}) => {
             product: cartProducts,
             totalProducts: cartProducts.length,
             totalPrice: totalPrice(cartProducts),
-            //direction = "Calle Reina 21, 3-4, Barcelona, 08001"
             direction: formToString(directionValue),
             pay: 'Efectivo',
+            itsPaid: false
         };
         closeOrderData();
         setOrder([...order, savedOrder]);
         setCartProducts([]);
+        setDirectionValue('')
     }
     const saveOrderData = ()=>{
         closeCheckOutMenu() 
@@ -123,6 +125,16 @@ const ShoppingCartProvider = ({children}) => {
         setUserVisible(false)
         setOrder([])
     }
+    const paidOrder = (index)=>{
+        setDirectionValue('')
+        setOrder((prevState) => {
+            const newOrders = [...prevState]; 
+            newOrders[index].itsPaid = true;
+            return newOrders; 
+          });
+        }
+
+    console.log(order);
 
     return (
     <ContextShoppingCart.Provider 
@@ -169,7 +181,8 @@ const ShoppingCartProvider = ({children}) => {
             avoidCloseModal,
             toggleVisibilityUser,
             menuToggle,
-            logout
+            logout,
+            paidOrder
             }}>
         {children}
     </ContextShoppingCart.Provider>
